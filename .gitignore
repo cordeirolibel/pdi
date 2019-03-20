@@ -1,1 +1,3 @@
 output
+*.bmp
+!arroz.bmp

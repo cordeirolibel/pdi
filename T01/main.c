@@ -16,7 +16,7 @@
 
 // TODO: ajuste estes parâmetros!
 #define NEGATIVO 0
-#define THRESHOLD 0.4f
+#define THRESHOLD 0.8f
 #define ALTURA_MIN 1
 #define LARGURA_MIN 1
 #define N_PIXELS_MIN 1
@@ -77,7 +77,6 @@ int main ()
     free (componentes);
     destroiImagem (img_out);
     destroiImagem (img);
-
     return (0);
 }
 
@@ -100,7 +99,10 @@ void binariza (Imagem* in, Imagem* out, float threshold)
         exit (1);
     }
 
-    // TODO: escreva o código desta função.
+    for (int y = 0; y < in->altura; y++)
+        for (int x = 0; x < in->largura; x++)
+            for (int canal = 0; canal < in->n_canais; canal++)
+                out->dados[canal][y][x] = in->dados[canal][y][x] > threshold;
 }
 
 /*============================================================================*/
