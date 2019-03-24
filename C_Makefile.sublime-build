@@ -1,0 +1,3 @@
+{
+	"shell_cmd": "make;stdbuf -o0 ./output"
+}

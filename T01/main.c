@@ -35,6 +35,7 @@ typedef struct
 
 void binariza (Imagem* in, Imagem* out, float threshold);
 int rotula (Imagem* img, Componente** componentes, int largura_min, int altura_min, int n_pixels_min);
+void inunda(float label,Imagem* f, int x0, int y0);
 
 /*============================================================================*/
 
@@ -129,7 +130,52 @@ int rotula (Imagem* img, Componente** componentes, int largura_min, int altura_m
 	// Observe que o parâmetro 'componentes' é um ponteiro para um vetor, então a alocação dele deve ser algo como:
 	// *componentes = malloc (sizeof (Componente) * n);
 	// Dependendo de como você fizer a sua implementação, pode ser também interessante alocar primeiro um vetor maior do que o necessário, ajustando depois o tamanho usando a função realloc.
-    return (0);
+
+    //cria uma matriz auxiliar, marcando pixels de
+    // background com 0 e os de foreground com -1.
+    Imagem* img_aux = criaImagem (img->largura, img->altura, 1);
+    for (int y = 0; y < img->altura; y++)
+        for (int x = 0; x < img->largura; x++)
+            img_aux->dados[0][y][x] = (img->dados[0][y][x]==0) ? 0 : -1;
+
+    float label = 0.1;
+
+    // Para cada Pixel
+    for (int y = 0; y < img_aux->altura; y++)
+    {
+        for (int x = 0; x < img_aux->largura; x++)
+        {
+            if (img_aux->dados[0][y][x] == -1.0)
+            {
+                inunda(label,img_aux,x,y);
+                label += 0.1;
+            }
+        }
+    }
+
+
+    // Limpeza
+    destroiImagem (img_aux);
+    return ((int)(label*10));
+        
+}
+
+// Inundacao recursivo.
+void inunda(float label,Imagem* img, int x0, int y0)
+{
+
+    img->dados[0][y0][x0] = label;
+
+    //para cada vizinho-4
+    if(img->dados[0][y0-1][x0]==-1)
+        inunda(label,img,x0,y0-1);
+    if(img->dados[0][y0+1][x0]==-1)
+        inunda(label,img,x0,y0+1);
+    if(img->dados[0][y0][x0-1]==-1)
+        inunda(label,img,x0-1,y0);
+    if(img->dados[0][y0][x0+1]==-1)
+        inunda(label,img,x0+1,y0);
+
 }
 
 /*============================================================================*/
