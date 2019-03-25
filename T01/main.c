@@ -19,7 +19,7 @@
 #define THRESHOLD 0.8f
 #define ALTURA_MIN 1
 #define LARGURA_MIN 1
-#define N_PIXELS_MIN 1
+#define N_PIXELS_MIN 100
 
 /*============================================================================*/
 
@@ -35,7 +35,7 @@ typedef struct
 
 void binariza (Imagem* in, Imagem* out, float threshold);
 int rotula (Imagem* img, Componente** componentes, int largura_min, int altura_min, int n_pixels_min);
-void inunda(float label,Imagem* f, int x0, int y0);
+void inunda(float label, Imagem* img, int x0, int y0, int *n_pixels, Retangulo *retangulo);
 
 /*============================================================================*/
 
@@ -125,20 +125,18 @@ void binariza (Imagem* in, Imagem* out, float threshold)
 
 int rotula (Imagem* img, Componente** componentes, int largura_min, int altura_min, int n_pixels_min)
 {
-    // TODO: escreva esta função.
-	// Use a abordagem com flood fill recursivo.
-	// Observe que o parâmetro 'componentes' é um ponteiro para um vetor, então a alocação dele deve ser algo como:
-	// *componentes = malloc (sizeof (Componente) * n);
-	// Dependendo de como você fizer a sua implementação, pode ser também interessante alocar primeiro um vetor maior do que o necessário, ajustando depois o tamanho usando a função realloc.
+    Retangulo retangulo;
+    int numero_pixels = 0;
+    float label = 0;
+    *componentes = malloc (sizeof (Componente) * 10000);
+    int numero_componentes = 0;
 
-    //cria uma matriz auxiliar, marcando pixels de
+    // Cria uma matriz auxiliar, marcando pixels de
     // background com 0 e os de foreground com -1.
     Imagem* img_aux = criaImagem (img->largura, img->altura, 1);
     for (int y = 0; y < img->altura; y++)
         for (int x = 0; x < img->largura; x++)
             img_aux->dados[0][y][x] = (img->dados[0][y][x]==0) ? 0 : -1;
-
-    float label = 0.1;
 
     // Para cada Pixel
     for (int y = 0; y < img_aux->altura; y++)
@@ -147,35 +145,61 @@ int rotula (Imagem* img, Componente** componentes, int largura_min, int altura_m
         {
             if (img_aux->dados[0][y][x] == -1.0)
             {
-                inunda(label,img_aux,x,y);
-                label += 0.1;
+                numero_pixels = 0;
+                label = (float)(numero_componentes + 1) / 10.0;
+                retangulo = criaRetangulo(y,y,x,x);
+
+                inunda(label, img_aux, x, y, &numero_pixels, &retangulo);
+
+                if (numero_pixels > n_pixels_min)
+                {
+                    (*componentes)[numero_componentes].label = label;
+                    (*componentes)[numero_componentes].n_pixels = numero_pixels;
+                    (*componentes)[numero_componentes].roi = retangulo;
+
+                    numero_componentes++;
+                }
             }
         }
     }
 
+    // Ajustando o tamanho do vetor
+    *componentes = realloc(*componentes, sizeof (Componente) * numero_componentes);
 
     // Limpeza
     destroiImagem (img_aux);
-    return ((int)(label*10));
-        
+    return numero_componentes;
 }
 
 // Inundacao recursivo.
-void inunda(float label,Imagem* img, int x0, int y0)
+void inunda(float label, Imagem* img, int x0, int y0, int *n_pixels, Retangulo *retangulo)
 {
-
     img->dados[0][y0][x0] = label;
 
-    //para cada vizinho-4
-    if(img->dados[0][y0-1][x0]==-1)
-        inunda(label,img,x0,y0-1);
-    if(img->dados[0][y0+1][x0]==-1)
-        inunda(label,img,x0,y0+1);
-    if(img->dados[0][y0][x0-1]==-1)
-        inunda(label,img,x0-1,y0);
-    if(img->dados[0][y0][x0+1]==-1)
-        inunda(label,img,x0+1,y0);
+    (*n_pixels)++;
 
+    // Atualiza retangulo
+    if (x0 > retangulo->d)
+        retangulo->d = x0;
+    if (x0 < retangulo->e)
+        retangulo->e = x0;
+    if (y0 > retangulo->b)
+        retangulo->b = y0;
+    if (y0 < retangulo->c)
+        retangulo->c = y0;
+
+    // Para cada vizinho-4
+    if((y0 > 0) && (img->dados[0][y0-1][x0]==-1))
+        inunda(label, img, x0, y0-1, n_pixels, retangulo);
+
+    if((y0 < (img->altura - 1)) && (img->dados[0][y0+1][x0]==-1))
+        inunda(label, img, x0, y0+1, n_pixels, retangulo);
+
+    if((x0 > 0) && (img->dados[0][y0][x0-1]==-1))
+        inunda(label, img, x0-1, y0, n_pixels, retangulo);
+
+    if((x0 < (img->largura - 1)) && (img->dados[0][y0][x0+1]==-1))
+        inunda(label, img, x0+1, y0, n_pixels, retangulo);
 }
 
 /*============================================================================*/
