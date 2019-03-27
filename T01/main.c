@@ -12,14 +12,23 @@
 
 /*============================================================================*/
 
+#ifndef TEXTO
 #define INPUT_IMAGE "arroz.bmp"
-
-// TODO: ajuste estes parâmetros!
 #define NEGATIVO 0
 #define THRESHOLD 0.8f
 #define ALTURA_MIN 1
 #define LARGURA_MIN 1
 #define N_PIXELS_MIN 100
+#endif
+
+#ifdef TEXTO
+#define INPUT_IMAGE "documento-3mp.bmp"
+#define NEGATIVO 1
+#define THRESHOLD 0.4f
+#define ALTURA_MIN 10
+#define LARGURA_MIN 5
+#define N_PIXELS_MIN 50
+#endif
 
 /*============================================================================*/
 
