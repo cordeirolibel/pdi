@@ -1,8 +1,8 @@
 /*============================================================================*/
-/* Exemplo: segmentaÁ„o de uma imagem em escala de cinza.                     */
+/* Exemplo: segmenta√ß√£o de uma imagem em escala de cinza.                     */
 /*----------------------------------------------------------------------------*/
 /* Autor: Bogdan T. Nassu                                                     */
-/* Universidade TecnolÛgica Federal do Paran·                                 */
+/* Universidade Tecnol√≥gica Federal do Paran√°                                 */
 /*============================================================================*/
 
 #include <stdio.h>
@@ -16,8 +16,8 @@
 #define INPUT_IMAGE "arroz.bmp"
 #define NEGATIVO 0
 #define THRESHOLD 0.8f
-#define ALTURA_MIN 1
-#define LARGURA_MIN 1
+#define ALTURA_MIN 2
+#define LARGURA_MIN 2
 #define N_PIXELS_MIN 100
 #endif
 
@@ -52,7 +52,7 @@ int main ()
 {
     int i;
 
-    // Abre a imagem em escala de cinza, e mantÈm uma cÛpia colorida dela para desenhar a saÌda.
+    // Abre a imagem em escala de cinza, e mant√©m uma c√≥pia colorida dela para desenhar a sa√≠da.
     Imagem* img = abreImagem (INPUT_IMAGE, 1);
     if (!img)
     {
@@ -91,15 +91,15 @@ int main ()
 }
 
 /*----------------------------------------------------------------------------*/
-/** BinarizaÁ„o simples por limiarizaÁ„o.
+/** Binariza√ß√£o simples por limiariza√ß√£o.
  *
- * Par‚metros: Imagem* in: imagem de entrada. Se tiver mais que 1 canal,
+ * Par√¢metros: Imagem* in: imagem de entrada. Se tiver mais que 1 canal,
  *               binariza cada canal independentemente.
- *             Imagem* out: imagem de saÌda. Deve ter o mesmo tamanho da
+ *             Imagem* out: imagem de sa√≠da. Deve ter o mesmo tamanho da
  *               imagem de entrada.
  *             float threshold: limiar.
  *
- * Valor de retorno: nenhum (usa a imagem de saÌda). */
+ * Valor de retorno: nenhum (usa a imagem de sa√≠da). */
 
 void binariza (Imagem* in, Imagem* out, float threshold)
 {
@@ -121,21 +121,21 @@ void binariza (Imagem* in, Imagem* out, float threshold)
 /** Rotulagem usando flood fill. Marca os objetos da imagem com os valores
  * [0.1,0.2,etc].
  *
- * Par‚metros: Imagem* img: imagem de entrada E saÌda.
- *             Componente** componentes: um ponteiro para um vetor de saÌda.
- *               Supomos que o ponteiro inicialmente È inv·lido. Ele ir·
- *               apontar para um vetor que ser· alocado dentro desta funÁ„o.
+ * Par√¢metros: Imagem* img: imagem de entrada E sa√≠da.
+ *             Componente** componentes: um ponteiro para um vetor de sa√≠da.
+ *               Supomos que o ponteiro inicialmente √© inv√°lido. Ele ir√°
+ *               apontar para um vetor que ser√° alocado dentro desta fun√ß√£o.
  *               Lembre-se de desalocar o vetor criado!
  *             int largura_min: descarta componentes com largura menor que esta.
  *             int altura_min: descarta componentes com altura menor que esta.
  *             int n_pixels_min: descarta componentes com menos pixels que isso.
  *
- * Valor de retorno: o n˙mero de componentes conexos encontrados. */
+ * Valor de retorno: o n√∫mero de componentes conexos encontrados. */
 
 int rotula (Imagem* img, Componente** componentes, int largura_min, int altura_min, int n_pixels_min)
 {
     Retangulo retangulo;
-    int numero_pixels = 0;
+    int altura, largura, numero_pixels = 0;
     float label = 0;
     *componentes = malloc (sizeof (Componente) * 10000);
     int numero_componentes = 0;
@@ -160,7 +160,10 @@ int rotula (Imagem* img, Componente** componentes, int largura_min, int altura_m
 
                 inunda(label, img_aux, x, y, &numero_pixels, &retangulo);
 
-                if (numero_pixels > n_pixels_min)
+                altura = retangulo.b - retangulo.c;
+                largura = retangulo.d - retangulo.e;
+
+                if ((numero_pixels > n_pixels_min) && (largura > largura_min) && (altura > altura_min))
                 {
                     (*componentes)[numero_componentes].label = label;
                     (*componentes)[numero_componentes].n_pixels = numero_pixels;
@@ -198,17 +201,21 @@ void inunda(float label, Imagem* img, int x0, int y0, int *n_pixels, Retangulo *
         retangulo->c = y0;
 
     // Para cada vizinho-4
-    if((y0 > 0) && (img->dados[0][y0-1][x0]==-1))
-        inunda(label, img, x0, y0-1, n_pixels, retangulo);
+    if(y0 > 0)
+        if(img->dados[0][y0-1][x0]==-1)
+            inunda(label, img, x0, y0-1, n_pixels, retangulo);
 
-    if((y0 < (img->altura - 1)) && (img->dados[0][y0+1][x0]==-1))
-        inunda(label, img, x0, y0+1, n_pixels, retangulo);
+    if(y0 < (img->altura - 1))
+        if(img->dados[0][y0+1][x0]==-1)
+            inunda(label, img, x0, y0+1, n_pixels, retangulo);
 
-    if((x0 > 0) && (img->dados[0][y0][x0-1]==-1))
-        inunda(label, img, x0-1, y0, n_pixels, retangulo);
+    if(x0 > 0) 
+        if(img->dados[0][y0][x0-1]==-1)
+            inunda(label, img, x0-1, y0, n_pixels, retangulo);
 
-    if((x0 < (img->largura - 1)) && (img->dados[0][y0][x0+1]==-1))
-        inunda(label, img, x0+1, y0, n_pixels, retangulo);
+    if(x0 < (img->largura - 1))
+        if (img->dados[0][y0][x0+1]==-1)
+            inunda(label, img, x0+1, y0, n_pixels, retangulo);
 }
 
 /*============================================================================*/
