@@ -45,54 +45,38 @@ typedef struct
 void binariza (Imagem* in, Imagem* out, float threshold);
 int rotula (Imagem* img, Componente** componentes, int largura_min, int altura_min, int n_pixels_min);
 void inunda(float label, Imagem* img, int x0, int y0, int *n_pixels, Retangulo *retangulo);
+void filtroMediaIntegral (Imagem* in, Imagem* out, int tamanho_janela);
 double*** Integral (Imagem* in);
 
 /*============================================================================*/
 
 int main ()
 {
-    int i;
-
     // Abre a imagem em escala de cinza, e mantém uma cópia colorida dela para desenhar a saída.
-    Imagem* img = abreImagem (INPUT_IMAGE, 1);
-    if (!img)
+    Imagem* img_cinza = abreImagem (INPUT_IMAGE, 1);
+    if (!img_cinza)
     {
         printf ("Erro abrindo a imagem.\n");
         exit (1);
     }
 
-    Imagem* img_out = criaImagem (img->largura, img->altura, 3);
-    cinzaParaRGB (img, img_out);
+    Imagem* img = criaImagem (img_cinza->largura, img_cinza->altura, 3);
+    cinzaParaRGB (img_cinza, img);
 
-    double*** integral = Integral (img_out);
-    printf("Teste: %.2f", integral[0][10][10]);
+    Imagem* img_borrada = criaImagem (img->largura, img->altura, 3);
+
+    int tamanho_janela = 17; //Tem que ser número ímpar: é o lado da janela quadrada (por exemplo 5 significa janela 5 x 5).
+
+    //filtroMediaIngenuo (img, img_borrada, tamanho_janela);
+    //salvaImagem (img_borrada, "01 - borrada - ingenuo.bmp");
+
+    //filtroMediaSeparavel (img, img_borrada, tamanho_janela);
+    //salvaImagem (img_borrada, "01 - borrada - separavel.bmp");
+
+    filtroMediaIntegral (img, img_borrada, tamanho_janela);
+    salvaImagem (img_borrada, "01 - borrada - integral.bmp");
+
     return 0;
-
-    // Segmenta a imagem.
-    if (NEGATIVO)
-        inverte (img, img);
-    binariza (img, img, THRESHOLD);
-    salvaImagem (img, "01 - binarizada.bmp");
-
-    Componente* componentes;
-    int n_componentes;
-    clock_t tempo_inicio = clock ();
-    n_componentes = rotula (img, &componentes, LARGURA_MIN, ALTURA_MIN, N_PIXELS_MIN);
-    clock_t tempo_total = clock () - tempo_inicio;
-
-    printf ("Tempo: %d\n", (int) tempo_total);
-    printf ("%d componentes detectados.\n", n_componentes);
-
-    // Mostra os objetos encontrados.
-    for (i = 0; i < n_componentes; i++)
-        desenhaRetangulo (componentes [i].roi, criaCor (1,0,0), img_out);
-    salvaImagem (img_out, "02 - out.bmp");
-
-    // Limpeza.
-    free (componentes);
-    destroiImagem (img_out);
-    destroiImagem (img);
-    return (0);
 }
 
 /*----------------------------------------------------------------------------*/
@@ -225,10 +209,74 @@ void inunda(float label, Imagem* img, int x0, int y0, int *n_pixels, Retangulo *
 
 /*============================================================================*/
 
+void filtroMediaIntegral (Imagem* in, Imagem* out, int tamanho_janela)
+{
+    if (tamanho_janela % 2 == 0)
+    {
+        printf("O tamanho da janela utilizada no filtro da média deve ser um número ímpar!");
+        return;
+    }
+
+    int offset = (tamanho_janela - 1) / 2;
+    int area_janela;
+    double soma_janela;
+    double*** integral = Integral(in);
+
+    for (int canal = 0; canal < in->n_canais; canal++)
+        for (int y = 0; y < in->altura; y++)
+            for (int x = 0; x < in->largura; x++)
+            {
+                // Ajusta o offset nos casos em que estiver sendo analisada a região próxima à borda da janela
+                int offset_local = offset;
+                if (x < offset_local)
+                    offset_local = x;
+                if (in->largura - x - 1 < offset_local)
+                    offset_local = in->largura - x - 1;
+                if (y < offset_local)
+                    offset_local = y;
+                if (in->altura - y - 1 < offset_local)
+                    offset_local = in->altura - y - 1;
+
+                if (offset_local == 0)
+                {
+                    // Se estiver bem na borda da imagem, apenas copia o valor do pixel.
+                    out->dados[canal][y][x] = in->dados[canal][y][x];
+                }
+                else
+                {
+                    area_janela = (offset_local * 2 + 1) * (offset_local * 2 + 1);
+                    soma_janela = integral[canal][y + offset_local][x + offset_local];
+
+                    // Subtrai a região fora da janela
+                    if (y > offset_local)
+                        soma_janela -= integral[canal][y - offset_local - 1][x + offset_local];
+
+                    if (x > offset_local)
+                        soma_janela -= integral[canal][y + offset_local][x - offset_local - 1];
+
+                    // Soma bloco que foi subtraído duas vezes
+                    if ((y > offset_local) && (x > offset_local))
+                        soma_janela += integral[canal][y - offset_local - 1][x - offset_local - 1];
+
+                    out->dados[canal][y][x] = soma_janela / area_janela;
+                }
+            }
+}
+
+
 double*** Integral (Imagem* in)
 {
-    double*** out = malloc(sizeof (double) * in->n_canais * in->largura * in->altura);
+    // Alocando a matriz de saída
+    double*** out = malloc(sizeof (double**) * in->n_canais);
+    for (int canal = 0; canal < in->n_canais; canal++)
+    {
+        out[canal] = malloc(sizeof (double*) * in->altura);
 
+        for (int y = 0; y < in->altura; y++)
+            out[canal][y] = malloc(sizeof (double) * in->largura);
+    }
+
+    // Calculando a integral
     for (int canal = 0; canal < in->n_canais; canal++)
     {
         out[canal][0][0] = in->dados[canal][0][0];
@@ -241,9 +289,9 @@ double*** Integral (Imagem* in)
 
         for (int y = 1; y < in->altura; y++)
             for (int x = 1; x < in->largura; x++)
-                out[canal][y][x] =  in->dados[canal][y][x] -
-                                    out[canal][y][x-1] -
-                                    out[canal][y-1][x] +
+                out[canal][y][x] =  in->dados[canal][y][x] +
+                                    out[canal][y][x-1] +
+                                    out[canal][y-1][x] -
                                     out[canal][y-1][x-1];
     }
 
