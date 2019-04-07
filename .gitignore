@@ -1,3 +1,4 @@
 output
 *.bmp
 !arroz.bmp
+!T02/Exemplos/*

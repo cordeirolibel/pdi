@@ -14,5 +14,6 @@
 #include "cores.c"
 #include "geometria.c"
 #include "desenho.c"
+#include "segmenta.c"
 
 /*============================================================================*/

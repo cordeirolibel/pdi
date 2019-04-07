@@ -42,9 +42,11 @@ typedef struct
 
 /*============================================================================*/
 
-void binariza (Imagem* in, Imagem* out, float threshold);
-int rotula (Imagem* img, Componente** componentes, int largura_min, int altura_min, int n_pixels_min);
-void inunda(float label, Imagem* img, int x0, int y0, int *n_pixels, Retangulo *retangulo);
+//void binariza (Imagem* in, Imagem* out, float threshold);
+//int rotula (Imagem* img, Componente** componentes, int largura_min, int altura_min, int n_pixels_min);
+//void inunda(float label, Imagem* img, int x0, int y0, int *n_pixels, Retangulo *retangulo);
+void filtroMediaIngenuo (Imagem* in, Imagem* out, int tamanho_janela);
+void filtroMediaSeparavel (Imagem* in, Imagem* out, int tamanho_janela);
 void filtroMediaIntegral (Imagem* in, Imagem* out, int tamanho_janela);
 double*** Integral (Imagem* in);
 
@@ -52,6 +54,7 @@ double*** Integral (Imagem* in);
 
 int main ()
 {
+    clock_t tempo;
     // Abre a imagem em escala de cinza, e mantém uma cópia colorida dela para desenhar a saída.
     Imagem* img_cinza = abreImagem (INPUT_IMAGE, 1);
     if (!img_cinza)
@@ -67,144 +70,138 @@ int main ()
 
     int tamanho_janela = 17; //Tem que ser número ímpar: é o lado da janela quadrada (por exemplo 5 significa janela 5 x 5).
 
-    //filtroMediaIngenuo (img, img_borrada, tamanho_janela);
-    //salvaImagem (img_borrada, "01 - borrada - ingenuo.bmp");
+    //Ingenuo
+    tempo = clock ();
+    filtroMediaIngenuo (img, img_borrada, tamanho_janela);
+    tempo = clock () - tempo;
+    printf ("Tempo Ingenuo: %d\n", (int) tempo);
+    salvaImagem (img_borrada, "01 - borrada - ingenuo.bmp");
 
-    //filtroMediaSeparavel (img, img_borrada, tamanho_janela);
-    //salvaImagem (img_borrada, "01 - borrada - separavel.bmp");
+    //Separavel
+    tempo = clock ();
+    filtroMediaSeparavel (img, img_borrada, tamanho_janela);
+    tempo = clock () - tempo;
+    printf ("Tempo Separavel: %d\n", (int) tempo);
+    salvaImagem (img_borrada, "01 - borrada - separavel.bmp");
 
+    //Integral
+    tempo = clock ();
     filtroMediaIntegral (img, img_borrada, tamanho_janela);
+    tempo = clock () - tempo;
+    printf ("Tempo Integral: %d\n", (int) tempo);
     salvaImagem (img_borrada, "01 - borrada - integral.bmp");
 
+    //Limpeza
+    destroiImagem (img);
+    destroiImagem (img_borrada);
+    destroiImagem (img_cinza);
     return 0;
 }
 
-/*----------------------------------------------------------------------------*/
-/** Binarização simples por limiarização.
- *
- * Parâmetros: Imagem* in: imagem de entrada. Se tiver mais que 1 canal,
- *               binariza cada canal independentemente.
- *             Imagem* out: imagem de saída. Deve ter o mesmo tamanho da
- *               imagem de entrada.
- *             float threshold: limiar.
- *
- * Valor de retorno: nenhum (usa a imagem de saída). */
+/*============================================================================*/
 
-void binariza (Imagem* in, Imagem* out, float threshold)
+void filtroMediaIngenuo (Imagem* in, Imagem* out, int tamanho_janela)
 {
-    if (in->largura != out->largura || in->altura != out->altura || in->n_canais != out->n_canais)
+    if (tamanho_janela % 2 == 0)
     {
-        printf ("ERRO: binariza: as imagens precisam ter o mesmo tamanho e numero de canais.\n");
-        exit (1);
+        printf("O tamanho da janela utilizada no filtro da média deve ser um número ímpar!");
+        return;
     }
 
+    int offset = (tamanho_janela - 1) / 2;
+    int area_janela;
+
+    //para cada pixel da imagem
     for (int canal = 0; canal < in->n_canais; canal++)
         for (int y = 0; y < in->altura; y++)
             for (int x = 0; x < in->largura; x++)
-                out->dados[canal][y][x] = in->dados[canal][y][x] > threshold;
+            {
+                area_janela = 0;
+                out->dados[canal][y][x] = 0;
+
+                //para cada pixel do kernel
+                for(int yo = y-offset; yo <= y+offset; yo++)
+                    for(int xo = x-offset; xo <= x+offset; xo++)
+                    {
+                        //esta dentro da imagem?
+                        if((xo<0)||(yo<0)||(in->altura<=yo)||(in->largura<=xo))
+                            continue;
+
+                        //soma o pixel
+                        out->dados[canal][y][x] += in->dados[canal][yo][xo];
+                        area_janela += 1;
+                    }
+                out->dados[canal][y][x] /= area_janela;
+            }
+
 }
 
-/*============================================================================*/
-/* ROTULAGEM                                                                  */
-/*============================================================================*/
-/** Rotulagem usando flood fill. Marca os objetos da imagem com os valores
- * [0.1,0.2,etc].
- *
- * Parâmetros: Imagem* img: imagem de entrada E saída.
- *             Componente** componentes: um ponteiro para um vetor de saída.
- *               Supomos que o ponteiro inicialmente é inválido. Ele irá
- *               apontar para um vetor que será alocado dentro desta função.
- *               Lembre-se de desalocar o vetor criado!
- *             int largura_min: descarta componentes com largura menor que esta.
- *             int altura_min: descarta componentes com altura menor que esta.
- *             int n_pixels_min: descarta componentes com menos pixels que isso.
- *
- * Valor de retorno: o número de componentes conexos encontrados. */
-
-int rotula (Imagem* img, Componente** componentes, int largura_min, int altura_min, int n_pixels_min)
+void filtroMediaSeparavel (Imagem* in, Imagem* out, int tamanho_janela)
 {
-    Retangulo retangulo;
-    int altura, largura, numero_pixels = 0;
-    float label = 0;
-    *componentes = malloc (sizeof (Componente) * 10000);
-    int numero_componentes = 0;
-
-    // Cria uma matriz auxiliar, marcando pixels de
-    // background com 0 e os de foreground com -1.
-    Imagem* img_aux = criaImagem (img->largura, img->altura, 1);
-    for (int y = 0; y < img->altura; y++)
-        for (int x = 0; x < img->largura; x++)
-            img_aux->dados[0][y][x] = (img->dados[0][y][x]==0) ? 0 : -1;
-
-    // Para cada Pixel
-    for (int y = 0; y < img_aux->altura; y++)
+    if (tamanho_janela % 2 == 0)
     {
-        for (int x = 0; x < img_aux->largura; x++)
-        {
-            if (img_aux->dados[0][y][x] == -1.0)
-            {
-                numero_pixels = 0;
-                label = (float)(numero_componentes + 1) / 10.0;
-                retangulo = criaRetangulo(y,y,x,x);
-
-                inunda(label, img_aux, x, y, &numero_pixels, &retangulo);
-
-                altura = retangulo.b - retangulo.c;
-                largura = retangulo.d - retangulo.e;
-
-                if ((numero_pixels > n_pixels_min) && (largura > largura_min) && (altura > altura_min))
-                {
-                    (*componentes)[numero_componentes].label = label;
-                    (*componentes)[numero_componentes].n_pixels = numero_pixels;
-                    (*componentes)[numero_componentes].roi = retangulo;
-
-                    numero_componentes++;
-                }
-            }
-        }
+        printf("O tamanho da janela utilizada no filtro da média deve ser um número ímpar!");
+        return;
     }
 
-    // Ajustando o tamanho do vetor
-    *componentes = realloc(*componentes, sizeof (Componente) * numero_componentes);
+    int offset = (tamanho_janela - 1) / 2;
+    int area_janela;
 
-    // Limpeza
-    destroiImagem (img_aux);
-    return numero_componentes;
-}
+    // Cria mais uma imagem auxiliar
+    Imagem* img_vertical = criaImagem (in->largura, in->altura, in->n_canais);
+    
+    //===================
+    // ==> Vertical
+    //para cada pixel
+    for (int canal = 0; canal < in->n_canais; canal++)
+        for (int y = 0; y < in->altura; y++)
+            for (int x = 0; x < in->largura; x++){
+                area_janela = 0;
+                img_vertical->dados[canal][y][x] = 0;
 
-// Inundacao recursivo.
-void inunda(float label, Imagem* img, int x0, int y0, int *n_pixels, Retangulo *retangulo)
-{
-    img->dados[0][y0][x0] = label;
+                //para cada pixel na janela vertical  
+                for(int yo = y-offset; yo <= y+offset; yo++)
+                {
+                    //esta dentro da imagem?
+                    if((yo<0)||(in->altura<=yo))
+                        continue;
 
-    (*n_pixels)++;
+                    //soma o pixel
+                    img_vertical->dados[canal][y][x] += in->dados[canal][yo][x];
+                    area_janela += 1;
+                }
+                img_vertical->dados[canal][y][x] /= area_janela;
+            }
 
-    // Atualiza retangulo
-    if (x0 > retangulo->d)
-        retangulo->d = x0;
-    if (x0 < retangulo->e)
-        retangulo->e = x0;
-    if (y0 > retangulo->b)
-        retangulo->b = y0;
-    if (y0 < retangulo->c)
-        retangulo->c = y0;
+    //===================
+    // ==> Horizontal
+    //para cada pixel
+    for (int canal = 0; canal < in->n_canais; canal++)
+        for (int y = 0; y < in->altura; y++)
+            for (int x = 0; x < in->largura; x++){
+                area_janela = 0;
+                out->dados[canal][y][x] = 0;
 
-    // Para cada vizinho-4
-    if(y0 > 0)
-        if(img->dados[0][y0-1][x0]==-1)
-            inunda(label, img, x0, y0-1, n_pixels, retangulo);
+                //para cada pixel na janela vertical  
+                for(int xo = x-offset; xo <= x+offset; xo++)
+                {
+                    //esta dentro da imagem?
+                    if((xo<0)||(in->largura<=xo))
+                        continue;
 
-    if(y0 < (img->altura - 1))
-        if(img->dados[0][y0+1][x0]==-1)
-            inunda(label, img, x0, y0+1, n_pixels, retangulo);
+                    //soma o pixel
+                    out->dados[canal][y][x] += img_vertical->dados[canal][y][xo];
+                    area_janela += 1;
+                }
+                out->dados[canal][y][x] /= area_janela;
+            }
 
-    if(x0 > 0)
-        if(img->dados[0][y0][x0-1]==-1)
-            inunda(label, img, x0-1, y0, n_pixels, retangulo);
+    //===================
+    // ==> Horizontal
 
-    if(x0 < (img->largura - 1))
-        if (img->dados[0][y0][x0+1]==-1)
-            inunda(label, img, x0+1, y0, n_pixels, retangulo);
+    // Limpeza.
+    destroiImagem (img_vertical);
+            
 }
 
 /*============================================================================*/
@@ -261,6 +258,15 @@ void filtroMediaIntegral (Imagem* in, Imagem* out, int tamanho_janela)
                     out->dados[canal][y][x] = soma_janela / area_janela;
                 }
             }
+
+    //destroy imagem integral
+    for (int canal = 0; canal < in->n_canais; canal++)
+    {
+        for (int y = 0; y < in->altura; y++)
+            free(integral[canal][y]);
+        free(integral[canal]);
+    }
+    free(integral);
 }
 
 

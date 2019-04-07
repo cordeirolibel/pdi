@@ -19,6 +19,7 @@
 #include "cores.h"
 #include "geometria.h"
 #include "desenho.h"
+#include "segmenta.h"
 
 /*============================================================================*/
 #endif /* __PDI_H */

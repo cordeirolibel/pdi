@@ -119,14 +119,13 @@ void cinzaParaRGB (Imagem* in, Imagem* out)
 
 void inverte (Imagem* in, Imagem* out)
 {
-    int i, j, k;
-
     if (in->largura != out->largura || in->altura != out->altura || in->n_canais != out->n_canais)
     {
         printf ("ERRO: inverte: as imagens precisam ter o mesmo tamanho e numero de canais.\n");
         exit (1);
     }
 
+	int i, j, k;
     for (i = 0; i < in->n_canais; i++)
         for (j = 0; j < in->altura; j++)
             for (k = 0; k < in->largura; k++)
