@@ -8,12 +8,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "pdi.h"
+#include "pdi.c"
 
 /*============================================================================*/
 
 
-#define INPUT_IMAGE "GT2.bmp"
+#define INPUT_IMAGE "GT2.BMP"
 #define THRESHOLD 0.8f
 
 
@@ -51,12 +51,13 @@ int main ()
     Imagem* aux =          criaImagem (img_entrada->largura, img_entrada->altura, 3);
     Imagem* img_saida =    criaImagem (img_entrada->largura, img_entrada->altura, 3);
 
+    //buscar fonte de luz
+    achaLuz(img_entrada,img_luz,THRESHOLD);
+
+    //* FILTRO DA MÉDIA
     int tamanho_janela1 = 7; 
     int tamanho_janela2 = 13; 
     int tamanho_janela3 = 19; 
-
-    //buscar fonte de luz
-    achaLuz(img_entrada,img_luz,THRESHOLD);
 
     //borra 1
     blur (img_luz,      img_borrada1, tamanho_janela1, tamanho_janela1, NULL);
@@ -72,10 +73,27 @@ int main ()
     blur (img_luz,      img_borrada3, tamanho_janela3, tamanho_janela3, NULL);
     blur (img_borrada3, aux,          tamanho_janela3, tamanho_janela3, NULL);
     blur (aux,          img_borrada3, tamanho_janela3, tamanho_janela3, NULL);
+    //*/
+
+    /* GAUSSIANA
+    float sigma1 = 1.5;
+    float sigma2 = 4;
+    float sigma3 = 10;
+
+    //borra 1
+    filtroGaussiano (img_luz, img_borrada1, sigma1, sigma1, NULL);
+
+    //borra 2
+    filtroGaussiano (img_luz, img_borrada2, sigma2, sigma2, NULL);
+
+    //borra 3
+    filtroGaussiano (img_luz, img_borrada3, sigma3, sigma3, NULL);
+    //*/
 
     //soma na imagem original
     soma (img_borrada1, img_borrada2, 1, 1, aux);
     soma (aux,          img_borrada3, 1, 1, img_saida);
+    soma (img_entrada,  img_saida, 1, 1, img_saida);
 
     //salva
     salvaImagem (img_saida, "saida.bmp");
@@ -90,9 +108,6 @@ int main ()
     destroiImagem (img_saida);
     return 0;
 }
-
-
-
 
 void achaLuz (Imagem* in, Imagem* out, float threshold)
 {
