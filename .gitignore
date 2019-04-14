@@ -1,5 +1,6 @@
 output
 *.bmp
+*.BMP
 !arroz.bmp
 !T02/Exemplos/*
-WindWakerGC.bmp
+!WindWakerGC.BMP
