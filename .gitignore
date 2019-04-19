@@ -1,6 +1,8 @@
 output
 *.bmp
 *.BMP
+.ipynb_checkpoints
 !arroz.bmp
 !T02/Exemplos/*
 !WindWakerGC.BMP
+
