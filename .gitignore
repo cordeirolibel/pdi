@@ -6,3 +6,5 @@ output
 !T02/Exemplos/*
 !WindWakerGC.BMP
 *.png
+*.csv
+*.csv#
