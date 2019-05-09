@@ -1,10 +1,13 @@
 output
 *.bmp
 *.BMP
+*.png
+*.jpg
+*.csv
+*.csv#
 .ipynb_checkpoints
 !arroz.bmp
 !T02/Exemplos/*
 !WindWakerGC.BMP
-*.png
-*.csv
-*.csv#
+!T05/utfpr.jpg
+
