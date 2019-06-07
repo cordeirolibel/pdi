@@ -17,7 +17,7 @@ def separar_frames(pasta_principal, nome_arquivo_video, pasta_salvar_frames, fra
         k = 0
         while k < quantos_frames:
             ret, frame = cap.read()
-            cv2.imwrite(pasta_principal + pasta_salvar_frames + "%3d.png" % k, frame)
+            cv2.imwrite(pasta_principal + pasta_salvar_frames + "%03d.png" % k, frame)
             k += 1
 
 

@@ -3,6 +3,7 @@ output
 *.BMP
 *.png
 *.jpg
+*.jpeg
 *.csv
 *.csv#
 .ipynb_checkpoints

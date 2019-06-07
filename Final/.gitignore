@@ -1,7 +1,7 @@
 *.mp4
 *.png
-
-
+pip-selfcheck.json
+pyvenv.cfg
 
 # PYCHARM
 .idea/
