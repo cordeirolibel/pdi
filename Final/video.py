@@ -2,8 +2,9 @@ import os
 import cv2
 import glob
 
-
 def separar_frames(pasta_principal, nome_arquivo_video, pasta_salvar_frames, frame_inicial, quantos_frames):
+    print("===> Separa\n")
+
     if not os.path.exists(pasta_principal + pasta_salvar_frames):
         os.mkdir(pasta_principal + pasta_salvar_frames)
 
@@ -11,17 +12,34 @@ def separar_frames(pasta_principal, nome_arquivo_video, pasta_salvar_frames, fra
     cap = cv2.VideoCapture(pasta_principal + nome_arquivo_video)
 
     # Seleciona o frame inicial
-    cap.set(cv2.CAP_PROP_POS_FRAMES, frame_inicial)
+    #cap.set(cv2.CAP_PROP_POS_FRAMES, frame_inicial)
 
     if cap.isOpened():
         k = 0
-        while k < quantos_frames:
+        while True:
             ret, frame = cap.read()
-            cv2.imwrite(pasta_principal + pasta_salvar_frames + "%03d.png" % k, frame)
+
+            # Seleciona o frame inicial
+            if k < frame_inicial:
+                k += 1
+                continue
+
+            #salva imagem
+            cv2.imwrite(pasta_principal + pasta_salvar_frames + "%03d.png" % (k-frame_inicial), frame)
             k += 1
+
+            #print
+            if (k-frame_inicial)%25 == 0:
+                print(k-frame_inicial,'/',quantos_frames)
+
+            #condicao de parada
+            if k>=frame_inicial+quantos_frames:
+                break
+
 
 
 def juntar_frames(pasta_principal, pasta_frames, nome_video_saida, frames_por_segundo=30):
+    print("===> Junta\n")
     img_array = []
 
     size = 0

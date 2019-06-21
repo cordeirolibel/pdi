@@ -6,7 +6,10 @@ output
 *.jpeg
 *.csv
 *.csv#
-.ipynb_checkpoints
+*.ipynb_checkpoints
+*__pycache__
+Final/waifu2x
+
 !arroz.bmp
 !T02/Exemplos/*
 !WindWakerGC.BMP
