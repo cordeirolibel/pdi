@@ -1,10 +1,13 @@
 import video
 
 
-#VIDEO = "Spaghetti"
-VIDEO = "Flintstones"
+VIDEO = "Spaghetti"
+#VIDEO = "Flintstones"
 # VIDEO = "Avatar"
 
+#TYPE = "waifu"
+#TYPE = "original"
+TYPE = "DCSCN"
 #=====================
 # === Frames do Video
 
@@ -19,11 +22,15 @@ quantos_frames = 5 * 30
 # === Pastas e aquivos
 
 pasta_base = VIDEO + '/'
-pasta_frames = 'Frames/'#'waifu/'
+pasta_frames = TYPE+'/'
 
 arquivo_video_entrada = VIDEO + '.mp4'
-arquivo_video_saida = VIDEO + '_recomposto.mp4'#"_waifu.mp4" 
+arquivo_video_saida = VIDEO + '_'+TYPE+".mp4"
 
+if TYPE == "original":
+	arquivo_video_saida = VIDEO + "_recomposto.mp4"
+	pasta_frames = "Frames/"
+	
 #=====================
 # === Separa o video
 

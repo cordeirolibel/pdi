@@ -9,6 +9,7 @@ output
 *.ipynb_checkpoints
 *__pycache__
 Final/waifu2x
+Final/DCSCN
 
 !arroz.bmp
 !T02/Exemplos/*

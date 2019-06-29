@@ -38,9 +38,11 @@ class Play:
 		self.videos_path  = ["Flintstones","Spaghetti","Avatar"]
 		self.original_pos = "_recomposto" 
 		self.waifu_pos    = "_waifu"
+		self.dcscn_pos	  = "_DCSCN"
+		self.video_type = "original"
+		self.video_resize_type = 'nearest'
 		self.fps = 30
 		self.video_i = 0
-		self.video_type = "original"
 		self.pause = False
 		self.is_fullscreen = True
 		self.last_time = time.time()
@@ -56,6 +58,10 @@ class Play:
 			#waifu
 			path = os.path.join(video_name,video_name+self.waifu_pos+".mp4")
 			video['waifu'] = Video(path)
+
+			#dcscn
+			path = os.path.join(video_name,video_name+self.dcscn_pos+".mp4")
+			video['dcscn'] = Video(path)
 
 			self.videos.append(video)
 
@@ -75,6 +81,18 @@ class Play:
 		if frame is None:
 			frame = np.zeros((10,10,3))
 		
+		#resize
+		dim_frame  = (frame.shape[1]*4,frame.shape[0]*4)
+		dim_screen = cv2.getWindowImageRect('video')[2:]
+
+		alpha = min([dim_screen[0]/dim_frame[0],dim_screen[1]/dim_frame[1]])
+		dim_frame2 = (int(dim_frame[0]*alpha),int(dim_frame[1]*alpha))
+
+		if self.video_resize_type == 'bicubic':
+			frame = cv2.resize(frame, dim_frame2, interpolation = cv2.INTER_CUBIC )
+		elif self.video_resize_type == 'nearest':
+			frame = cv2.resize(frame, dim_frame2, interpolation = cv2.INTER_NEAREST )
+
 		return frame
 
 	#load the frame of all videos
@@ -122,8 +140,7 @@ class Play:
 		#fullscreen
 		cv2.namedWindow("video", cv2.WND_PROP_FULLSCREEN)
 		cv2.setWindowProperty("video",cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
-		a = time.time()
-
+		a=0
 		while(True):
 			#show frame 
 			if not self.pause:
@@ -139,22 +156,26 @@ class Play:
 
 			#draw
 			cv2.imshow('video',self.get_frame())
-			
+
 			### Keyboard
 			#pause
 			if key == ord(' '):
 				self.pause = not self.pause
-			#change type
+			#change type 
 			elif key == ord('w'):
 				self.video_type = 'waifu'
-				run_one_time = True
 			elif key == ord('o'):
 				self.video_type = 'original'
-				run_one_time = True
+			elif key == ord('d'):
+				self.video_type = 'dcscn'
+			#change resize type 
+			elif key == ord('b'):
+				self.video_resize_type = 'bicubic'
+			elif key == ord('n'):
+				self.video_resize_type = 'nearest'
 			#change video
 			elif ord('0')<=key and key<=ord('9'):
 				self.video_i = int(chr(key))
-				run_one_time = True
 			#fullscreen
 			elif key == 200 or (key==27 and self.is_fullscreen): 
 				if self.is_fullscreen: 

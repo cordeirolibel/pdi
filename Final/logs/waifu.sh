@@ -1,12 +1,12 @@
 #!/bin/bash
 
-#./waifu.sh | tee -a log_flintstones_waifu.txt
+#./waifu.sh | tee -a log_spaghetti_waifu.txt
 
 echo Inicio
 
 #paths
-path_in=Flintstones/Frames
-path_out=Flintstones/waifu	
+path_in=../Spaghetti/Frames
+path_out=../Spaghetti/waifu	
 SECONDS=0
 
 #for image

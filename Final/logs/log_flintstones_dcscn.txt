@@ -1,0 +1,1061 @@
+Init
+Python Interpreter version:3.6
+tensorflow version:1.14.0
+numpy version:1.16.3
+Session and graph initialized.
+CNN1/conv_W:0 (3, 3, 1, 196)=1764, CNN1/conv_B:0 196, CNN1/prelu/CNN1_prelu:0 196, CNN2/conv_W:0 (3, 3, 196, 166)=292824, CNN2/conv_B:0 166, CNN2/prelu/CNN2_prelu:0 166, CNN3/conv_W:0 (3, 3, 166, 148)=221112, CNN3/conv_B:0 148, CNN3/prelu/CNN3_prelu:0 148, CNN4/conv_W:0 (3, 3, 148, 133)=177156, CNN4/conv_B:0 133, CNN4/prelu/CNN4_prelu:0 133, CNN5/conv_W:0 (3, 3, 133, 120)=143640, CNN5/conv_B:0 120, CNN5/prelu/CNN5_prelu:0 120, CNN6/conv_W:0 (3, 3, 120, 108)=116640, CNN6/conv_B:0 108, CNN6/prelu/CNN6_prelu:0 108, CNN7/conv_W:0 (3, 3, 108, 97)=94284, CNN7/conv_B:0 97, CNN7/prelu/CNN7_prelu:0 97, CNN8/conv_W:0 (3, 3, 97, 86)=75078, CNN8/conv_B:0 86, CNN8/prelu/CNN8_prelu:0 86, CNN9/conv_W:0 (3, 3, 86, 76)=58824, CNN9/conv_B:0 76, CNN9/prelu/CNN9_prelu:0 76, CNN10/conv_W:0 (3, 3, 76, 66)=45144, CNN10/conv_B:0 66, CNN10/prelu/CNN10_prelu:0 66, CNN11/conv_W:0 (3, 3, 66, 57)=33858, CNN11/conv_B:0 57, CNN11/prelu/CNN11_prelu:0 57, CNN12/conv_W:0 (3, 3, 57, 48)=24624, CNN12/conv_B:0 48, CNN12/prelu/CNN12_prelu:0 48, A1/conv_W:0 (1, 1, 1301, 64)=83264, A1/conv_B:0 64, A1/prelu/A1_prelu:0 64, B1/conv_W:0 (1, 1, 1301, 32)=41632, B1/conv_B:0 32, B1/prelu/B1_prelu:0 32, B2/conv_W:0 (3, 3, 32, 32)=9216, B2/conv_B:0 32, B2/prelu/B2_prelu:0 32, Up-PS/Up-PS_CNN/conv_W:0 (3, 3, 96, 384)=331776, Up-PS/Up-PS_CNN/conv_B:0 384, Up-PS2/Up-PS2_CNN/conv_W:0 (3, 3, 96, 384)=331776, Up-PS2/Up-PS2_CNN/conv_B:0 384, R-CNN1/conv_W:0 (3, 3, 96, 1)=864, 
+Total 50 variables, 2,087,102 params
+Model initialized.
+Model restored [ models/dcscn_L12_F196to48_Sc4_NIN_A64_PS_R1F32.ckpt ].
+--------------------------
+0 ../Flintstones/Frames/000.png 3.807785749435425
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+1 ../Flintstones/Frames/001.png 217.59796166419983
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+2 ../Flintstones/Frames/002.png 222.3000931739807
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+3 ../Flintstones/Frames/003.png 217.173002243042
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+4 ../Flintstones/Frames/004.png 217.11761617660522
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+5 ../Flintstones/Frames/005.png 215.09021830558777
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+6 ../Flintstones/Frames/006.png 216.86241245269775
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+7 ../Flintstones/Frames/007.png 215.1393039226532
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+8 ../Flintstones/Frames/008.png 214.42043590545654
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+9 ../Flintstones/Frames/009.png 214.81778478622437
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+10 ../Flintstones/Frames/010.png 215.24911952018738
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+11 ../Flintstones/Frames/011.png 214.60520887374878
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+12 ../Flintstones/Frames/012.png 214.41224694252014
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+13 ../Flintstones/Frames/013.png 214.8542742729187
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+14 ../Flintstones/Frames/014.png 216.45891857147217
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+15 ../Flintstones/Frames/015.png 215.9372043609619
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+16 ../Flintstones/Frames/016.png 216.44468665122986
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+17 ../Flintstones/Frames/017.png 216.47070741653442
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+18 ../Flintstones/Frames/018.png 214.66683769226074
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+19 ../Flintstones/Frames/019.png 214.11437058448792
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+20 ../Flintstones/Frames/020.png 214.50398182868958
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+21 ../Flintstones/Frames/021.png 214.60229229927063
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+22 ../Flintstones/Frames/022.png 214.7348394393921
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+23 ../Flintstones/Frames/023.png 214.23322582244873
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+24 ../Flintstones/Frames/024.png 215.23897910118103
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+25 ../Flintstones/Frames/025.png 214.09331464767456
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+26 ../Flintstones/Frames/026.png 214.39366626739502
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+27 ../Flintstones/Frames/027.png 214.13688397407532
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+28 ../Flintstones/Frames/028.png 213.79466915130615
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+29 ../Flintstones/Frames/029.png 213.89120292663574
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+30 ../Flintstones/Frames/030.png 214.35799074172974
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+31 ../Flintstones/Frames/031.png 217.09984064102173
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+32 ../Flintstones/Frames/032.png 213.805917263031
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+33 ../Flintstones/Frames/033.png 214.80424284934998
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+34 ../Flintstones/Frames/034.png 213.65188193321228
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+35 ../Flintstones/Frames/035.png 214.23310708999634
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+36 ../Flintstones/Frames/036.png 213.98424696922302
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+37 ../Flintstones/Frames/037.png 214.52428126335144
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+38 ../Flintstones/Frames/038.png 214.6935362815857
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+39 ../Flintstones/Frames/039.png 213.8869605064392
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+40 ../Flintstones/Frames/040.png 214.1653437614441
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+41 ../Flintstones/Frames/041.png 214.5057680606842
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+42 ../Flintstones/Frames/042.png 214.23010993003845
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+43 ../Flintstones/Frames/043.png 214.3442258834839
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+44 ../Flintstones/Frames/044.png 214.36485719680786
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+45 ../Flintstones/Frames/045.png 214.32806754112244
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+46 ../Flintstones/Frames/046.png 213.95467376708984
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+47 ../Flintstones/Frames/047.png 213.90826392173767
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+48 ../Flintstones/Frames/048.png 215.90449500083923
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+49 ../Flintstones/Frames/049.png 214.70382523536682
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+50 ../Flintstones/Frames/050.png 213.83038687705994
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+51 ../Flintstones/Frames/051.png 216.4761712551117
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+52 ../Flintstones/Frames/052.png 216.42919206619263
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+53 ../Flintstones/Frames/053.png 214.16228222846985
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+54 ../Flintstones/Frames/054.png 213.99949598312378
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+55 ../Flintstones/Frames/055.png 214.03083992004395
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+56 ../Flintstones/Frames/056.png 214.24373841285706
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+57 ../Flintstones/Frames/057.png 213.94288849830627
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+58 ../Flintstones/Frames/058.png 214.7135558128357
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+59 ../Flintstones/Frames/059.png 214.31953120231628
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+60 ../Flintstones/Frames/060.png 213.5169312953949
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+61 ../Flintstones/Frames/061.png 214.61374640464783
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+62 ../Flintstones/Frames/062.png 214.5082130432129
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+63 ../Flintstones/Frames/063.png 214.58964776992798
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+64 ../Flintstones/Frames/064.png 216.00788402557373
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+65 ../Flintstones/Frames/065.png 214.82607769966125
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+66 ../Flintstones/Frames/066.png 215.0332853794098
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+67 ../Flintstones/Frames/067.png 213.62958931922913
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+68 ../Flintstones/Frames/068.png 214.27639055252075
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+69 ../Flintstones/Frames/069.png 215.55559039115906
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+70 ../Flintstones/Frames/070.png 213.97661519050598
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+71 ../Flintstones/Frames/071.png 214.10846495628357
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+72 ../Flintstones/Frames/072.png 214.85237622261047
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+73 ../Flintstones/Frames/073.png 214.19422006607056
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+74 ../Flintstones/Frames/074.png 214.0599443912506
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+75 ../Flintstones/Frames/075.png 213.93648195266724
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+76 ../Flintstones/Frames/076.png 214.56025171279907
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+77 ../Flintstones/Frames/077.png 214.94834971427917
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+78 ../Flintstones/Frames/078.png 214.10965204238892
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+79 ../Flintstones/Frames/079.png 214.0515913963318
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+80 ../Flintstones/Frames/080.png 214.80645322799683
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+81 ../Flintstones/Frames/081.png 215.86269545555115
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+82 ../Flintstones/Frames/082.png 215.13614153862
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+83 ../Flintstones/Frames/083.png 213.77013182640076
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+84 ../Flintstones/Frames/084.png 213.93905425071716
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+85 ../Flintstones/Frames/085.png 213.61868381500244
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+86 ../Flintstones/Frames/086.png 213.72026300430298
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+87 ../Flintstones/Frames/087.png 214.0102560520172
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+88 ../Flintstones/Frames/088.png 214.16312718391418
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+89 ../Flintstones/Frames/089.png 214.44680452346802
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+90 ../Flintstones/Frames/090.png 213.89204144477844
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+91 ../Flintstones/Frames/091.png 214.2913477420807
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+92 ../Flintstones/Frames/092.png 213.7250678539276
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+93 ../Flintstones/Frames/093.png 214.2780032157898
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+94 ../Flintstones/Frames/094.png 214.5501298904419
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+95 ../Flintstones/Frames/095.png 214.34403681755066
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+96 ../Flintstones/Frames/096.png 214.23029851913452
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+97 ../Flintstones/Frames/097.png 214.14738178253174
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+98 ../Flintstones/Frames/098.png 216.3944046497345
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+99 ../Flintstones/Frames/099.png 214.47676873207092
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+100 ../Flintstones/Frames/100.png 214.5108504295349
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+101 ../Flintstones/Frames/101.png 214.31853032112122
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+102 ../Flintstones/Frames/102.png 214.5911374092102
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+103 ../Flintstones/Frames/103.png 214.27633571624756
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+104 ../Flintstones/Frames/104.png 214.38520550727844
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+105 ../Flintstones/Frames/105.png 214.63078546524048
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+106 ../Flintstones/Frames/106.png 214.2588973045349
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+107 ../Flintstones/Frames/107.png 214.93005228042603
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+108 ../Flintstones/Frames/108.png 214.4153275489807
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+109 ../Flintstones/Frames/109.png 214.317227602005
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+110 ../Flintstones/Frames/110.png 213.86856508255005
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+111 ../Flintstones/Frames/111.png 214.4921953678131
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+112 ../Flintstones/Frames/112.png 214.92377543449402
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+113 ../Flintstones/Frames/113.png 214.77604293823242
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+114 ../Flintstones/Frames/114.png 215.02492332458496
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+115 ../Flintstones/Frames/115.png 216.26993036270142
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+116 ../Flintstones/Frames/116.png 214.46084809303284
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+117 ../Flintstones/Frames/117.png 215.05356073379517
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+118 ../Flintstones/Frames/118.png 216.03893494606018
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+119 ../Flintstones/Frames/119.png 214.70899772644043
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+120 ../Flintstones/Frames/120.png 214.69357681274414
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+121 ../Flintstones/Frames/121.png 215.18214106559753
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+122 ../Flintstones/Frames/122.png 214.51322770118713
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+123 ../Flintstones/Frames/123.png 214.38909435272217
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+124 ../Flintstones/Frames/124.png 214.85319590568542
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+125 ../Flintstones/Frames/125.png 214.94180512428284
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+126 ../Flintstones/Frames/126.png 214.60268020629883
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+127 ../Flintstones/Frames/127.png 214.60585117340088
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+128 ../Flintstones/Frames/128.png 215.06476950645447
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+129 ../Flintstones/Frames/129.png 214.64347505569458
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+130 ../Flintstones/Frames/130.png 214.47192215919495
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+131 ../Flintstones/Frames/131.png 216.50431036949158
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+132 ../Flintstones/Frames/132.png 215.2494957447052
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+133 ../Flintstones/Frames/133.png 215.0392825603485
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+134 ../Flintstones/Frames/134.png 227.81252455711365
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+135 ../Flintstones/Frames/135.png 216.2066113948822
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+136 ../Flintstones/Frames/136.png 215.41434359550476
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+137 ../Flintstones/Frames/137.png 214.63250279426575
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+138 ../Flintstones/Frames/138.png 215.35591578483582
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+139 ../Flintstones/Frames/139.png 214.84905982017517
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+140 ../Flintstones/Frames/140.png 214.8582181930542
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+141 ../Flintstones/Frames/141.png 214.97323060035706
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+142 ../Flintstones/Frames/142.png 215.62750101089478
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+143 ../Flintstones/Frames/143.png 213.92822766304016
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+144 ../Flintstones/Frames/144.png 214.36281943321228
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+145 ../Flintstones/Frames/145.png 214.0289249420166
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+146 ../Flintstones/Frames/146.png 214.55010294914246
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+147 ../Flintstones/Frames/147.png 214.2863211631775
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+148 ../Flintstones/Frames/148.png 215.90102434158325
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+--------------------------
+149 ../Flintstones/Frames/149.png 214.82223987579346
+====> Part 1
+Loaded [output/tmp/1.png]: 640 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 640 x 180 x 3
+Init [3 s/ 3 s]
+000.png [217 s/ 221 s]
+001.png [222 s/ 439 s]
+002.png [217 s/ 439 s]
+003.png [217 s/ 434 s]
+004.png [215 s/ 432 s]
+005.png [216 s/ 431 s]
+006.png [215 s/ 432 s]
+007.png [214 s/ 429 s]
+008.png [214 s/ 429 s]
+009.png [215 s/ 430 s]
+010.png [214 s/ 429 s]
+011.png [214 s/ 429 s]
+012.png [214 s/ 429 s]
+013.png [216 s/ 431 s]
+014.png [215 s/ 432 s]
+015.png [216 s/ 432 s]
+016.png [216 s/ 432 s]
+017.png [214 s/ 431 s]
+018.png [214 s/ 428 s]
+019.png [214 s/ 428 s]
+020.png [214 s/ 429 s]
+021.png [214 s/ 429 s]
+022.png [214 s/ 428 s]
+023.png [215 s/ 429 s]
+024.png [214 s/ 429 s]
+025.png [214 s/ 428 s]
+026.png [214 s/ 428 s]
+027.png [213 s/ 427 s]
+028.png [213 s/ 427 s]
+029.png [214 s/ 428 s]
+030.png [217 s/ 431 s]
+031.png [213 s/ 430 s]
+032.png [214 s/ 428 s]
+033.png [213 s/ 428 s]
+034.png [214 s/ 427 s]
+035.png [213 s/ 428 s]
+036.png [214 s/ 428 s]
+037.png [214 s/ 429 s]
+038.png [213 s/ 428 s]
+039.png [214 s/ 428 s]
+040.png [214 s/ 428 s]
+041.png [214 s/ 428 s]
+042.png [214 s/ 428 s]
+043.png [214 s/ 428 s]
+044.png [214 s/ 428 s]
+045.png [213 s/ 428 s]
+046.png [213 s/ 427 s]
+047.png [215 s/ 429 s]
+048.png [214 s/ 430 s]
+049.png [213 s/ 428 s]
+050.png [216 s/ 430 s]
+051.png [216 s/ 432 s]
+052.png [214 s/ 430 s]
+053.png [213 s/ 428 s]
+054.png [214 s/ 428 s]
+055.png [214 s/ 428 s]
+056.png [213 s/ 428 s]
+057.png [214 s/ 428 s]
+058.png [214 s/ 429 s]
+059.png [213 s/ 427 s]
+060.png [214 s/ 428 s]
+061.png [214 s/ 429 s]
+062.png [214 s/ 429 s]
+063.png [216 s/ 430 s]
+064.png [214 s/ 430 s]
+065.png [215 s/ 429 s]
+066.png [213 s/ 428 s]
+067.png [214 s/ 427 s]
+068.png [215 s/ 429 s]
+069.png [213 s/ 429 s]
+070.png [214 s/ 428 s]
+071.png [214 s/ 428 s]
+072.png [214 s/ 429 s]
+073.png [214 s/ 428 s]
+074.png [213 s/ 427 s]
+075.png [214 s/ 428 s]
+076.png [214 s/ 429 s]
+077.png [214 s/ 429 s]
+078.png [214 s/ 428 s]
+079.png [214 s/ 428 s]
+080.png [215 s/ 430 s]
+081.png [215 s/ 430 s]
+082.png [213 s/ 428 s]
+083.png [213 s/ 427 s]
+084.png [213 s/ 427 s]
+085.png [213 s/ 427 s]
+086.png [214 s/ 427 s]
+087.png [214 s/ 428 s]
+088.png [214 s/ 428 s]
+089.png [213 s/ 428 s]
+090.png [214 s/ 428 s]
+091.png [213 s/ 428 s]
+092.png [214 s/ 428 s]
+093.png [214 s/ 428 s]
+094.png [214 s/ 428 s]
+095.png [214 s/ 428 s]
+096.png [214 s/ 428 s]
+097.png [216 s/ 430 s]
+098.png [214 s/ 430 s]
+099.png [214 s/ 428 s]
+100.png [214 s/ 428 s]
+101.png [214 s/ 428 s]
+102.png [214 s/ 428 s]
+103.png [214 s/ 428 s]
+104.png [214 s/ 429 s]
+105.png [214 s/ 428 s]
+106.png [214 s/ 429 s]
+107.png [214 s/ 429 s]
+108.png [214 s/ 428 s]
+109.png [213 s/ 428 s]
+110.png [214 s/ 428 s]
+111.png [214 s/ 429 s]
+112.png [214 s/ 429 s]
+113.png [215 s/ 429 s]
+114.png [216 s/ 431 s]
+115.png [214 s/ 430 s]
+116.png [215 s/ 429 s]
+117.png [216 s/ 431 s]
+118.png [214 s/ 430 s]
+119.png [214 s/ 429 s]
+120.png [215 s/ 429 s]
+121.png [214 s/ 429 s]
+122.png [214 s/ 428 s]
+123.png [214 s/ 429 s]
+124.png [214 s/ 429 s]
+125.png [214 s/ 429 s]
+126.png [214 s/ 429 s]
+127.png [215 s/ 429 s]
+128.png [214 s/ 429 s]
+129.png [214 s/ 429 s]
+130.png [216 s/ 430 s]
+131.png [215 s/ 431 s]
+132.png [215 s/ 430 s]
+133.png [227 s/ 442 s]
+134.png [216 s/ 444 s]
+135.png [215 s/ 431 s]
+136.png [214 s/ 430 s]
+137.png [215 s/ 429 s]
+138.png [214 s/ 430 s]
+139.png [214 s/ 429 s]
+140.png [214 s/ 429 s]
+141.png [215 s/ 430 s]
+142.png [213 s/ 429 s]
+143.png [214 s/ 428 s]
+144.png [214 s/ 428 s]
+145.png [214 s/ 428 s]
+146.png [214 s/ 428 s]
+147.png [215 s/ 430 s]
+148.png [214 s/ 430 s]
+149.png [214 s/ 429 s]
+End

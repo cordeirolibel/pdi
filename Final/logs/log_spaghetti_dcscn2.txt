@@ -1,0 +1,382 @@
+Init
+Python Interpreter version:3.6
+tensorflow version:1.14.0
+numpy version:1.16.3
+Session and graph initialized.
+CNN1/conv_W:0 (3, 3, 1, 196)=1764, CNN1/conv_B:0 196, CNN1/prelu/CNN1_prelu:0 196, CNN2/conv_W:0 (3, 3, 196, 166)=292824, CNN2/conv_B:0 166, CNN2/prelu/CNN2_prelu:0 166, CNN3/conv_W:0 (3, 3, 166, 148)=221112, CNN3/conv_B:0 148, CNN3/prelu/CNN3_prelu:0 148, CNN4/conv_W:0 (3, 3, 148, 133)=177156, CNN4/conv_B:0 133, CNN4/prelu/CNN4_prelu:0 133, CNN5/conv_W:0 (3, 3, 133, 120)=143640, CNN5/conv_B:0 120, CNN5/prelu/CNN5_prelu:0 120, CNN6/conv_W:0 (3, 3, 120, 108)=116640, CNN6/conv_B:0 108, CNN6/prelu/CNN6_prelu:0 108, CNN7/conv_W:0 (3, 3, 108, 97)=94284, CNN7/conv_B:0 97, CNN7/prelu/CNN7_prelu:0 97, CNN8/conv_W:0 (3, 3, 97, 86)=75078, CNN8/conv_B:0 86, CNN8/prelu/CNN8_prelu:0 86, CNN9/conv_W:0 (3, 3, 86, 76)=58824, CNN9/conv_B:0 76, CNN9/prelu/CNN9_prelu:0 76, CNN10/conv_W:0 (3, 3, 76, 66)=45144, CNN10/conv_B:0 66, CNN10/prelu/CNN10_prelu:0 66, CNN11/conv_W:0 (3, 3, 66, 57)=33858, CNN11/conv_B:0 57, CNN11/prelu/CNN11_prelu:0 57, CNN12/conv_W:0 (3, 3, 57, 48)=24624, CNN12/conv_B:0 48, CNN12/prelu/CNN12_prelu:0 48, A1/conv_W:0 (1, 1, 1301, 64)=83264, A1/conv_B:0 64, A1/prelu/A1_prelu:0 64, B1/conv_W:0 (1, 1, 1301, 32)=41632, B1/conv_B:0 32, B1/prelu/B1_prelu:0 32, B2/conv_W:0 (3, 3, 32, 32)=9216, B2/conv_B:0 32, B2/prelu/B2_prelu:0 32, Up-PS/Up-PS_CNN/conv_W:0 (3, 3, 96, 384)=331776, Up-PS/Up-PS_CNN/conv_B:0 384, Up-PS2/Up-PS2_CNN/conv_W:0 (3, 3, 96, 384)=331776, Up-PS2/Up-PS2_CNN/conv_B:0 384, R-CNN1/conv_W:0 (3, 3, 96, 1)=864, 
+Total 50 variables, 2,087,102 params
+Model initialized.
+Model restored [ models/dcscn_L12_F196to48_Sc4_NIN_A64_PS_R1F32.ckpt ].
+--------------------------
+0 ../Spaghetti/Frames/097.png 6.310928583145142
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+1 ../Spaghetti/Frames/098.png 160.31457781791687
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+2 ../Spaghetti/Frames/099.png 166.93136620521545
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+3 ../Spaghetti/Frames/100.png 163.3607051372528
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+4 ../Spaghetti/Frames/101.png 171.07718634605408
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+5 ../Spaghetti/Frames/102.png 166.47682929039001
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+6 ../Spaghetti/Frames/103.png 163.21671223640442
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+7 ../Spaghetti/Frames/104.png 163.0988416671753
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+8 ../Spaghetti/Frames/105.png 162.92556762695312
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+9 ../Spaghetti/Frames/106.png 163.76597428321838
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+10 ../Spaghetti/Frames/107.png 163.01582169532776
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+11 ../Spaghetti/Frames/108.png 163.21816682815552
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+12 ../Spaghetti/Frames/109.png 163.26243543624878
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+13 ../Spaghetti/Frames/110.png 163.5857708454132
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+14 ../Spaghetti/Frames/111.png 163.64890241622925
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+15 ../Spaghetti/Frames/112.png 163.13304448127747
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+16 ../Spaghetti/Frames/113.png 163.56862497329712
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+17 ../Spaghetti/Frames/114.png 163.39581847190857
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+18 ../Spaghetti/Frames/115.png 163.9142439365387
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+19 ../Spaghetti/Frames/116.png 163.1843831539154
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+20 ../Spaghetti/Frames/117.png 163.25734972953796
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+21 ../Spaghetti/Frames/118.png 163.30267095565796
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+22 ../Spaghetti/Frames/119.png 164.04707384109497
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+23 ../Spaghetti/Frames/120.png 163.97704648971558
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+24 ../Spaghetti/Frames/121.png 162.549907207489
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+25 ../Spaghetti/Frames/122.png 162.80771803855896
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+26 ../Spaghetti/Frames/123.png 162.66940212249756
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+27 ../Spaghetti/Frames/124.png 165.54463362693787
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+28 ../Spaghetti/Frames/125.png 162.82681608200073
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+29 ../Spaghetti/Frames/126.png 162.90080523490906
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+30 ../Spaghetti/Frames/127.png 162.26116847991943
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+31 ../Spaghetti/Frames/128.png 162.75423192977905
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+32 ../Spaghetti/Frames/129.png 163.2881190776825
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+33 ../Spaghetti/Frames/130.png 162.91493916511536
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+34 ../Spaghetti/Frames/131.png 162.88060760498047
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+35 ../Spaghetti/Frames/132.png 162.6782238483429
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+36 ../Spaghetti/Frames/133.png 162.75918412208557
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+37 ../Spaghetti/Frames/134.png 163.01117324829102
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+38 ../Spaghetti/Frames/135.png 163.24043655395508
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+39 ../Spaghetti/Frames/136.png 163.3012239933014
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+40 ../Spaghetti/Frames/137.png 163.27523469924927
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+41 ../Spaghetti/Frames/138.png 163.91681456565857
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+42 ../Spaghetti/Frames/139.png 163.1772391796112
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+43 ../Spaghetti/Frames/140.png 162.70893359184265
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+44 ../Spaghetti/Frames/141.png 163.4680790901184
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+45 ../Spaghetti/Frames/142.png 162.8768389225006
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+46 ../Spaghetti/Frames/143.png 163.0824213027954
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+47 ../Spaghetti/Frames/144.png 163.4278416633606
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+48 ../Spaghetti/Frames/145.png 163.82462406158447
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+49 ../Spaghetti/Frames/146.png 165.30061864852905
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+50 ../Spaghetti/Frames/147.png 164.29894590377808
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+51 ../Spaghetti/Frames/148.png 163.4682216644287
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+--------------------------
+52 ../Spaghetti/Frames/149.png 163.57789039611816
+====> Part 1
+Loaded [output/tmp/1.png]: 480 x 180 x 3
+====> Part 2
+Loaded [output/tmp/2.png]: 480 x 180 x 3
+Init [6 s/ 6 s]
+097.png [160 s/ 166 s]
+098.png [166 s/ 333 s]
+099.png [163 s/ 496 s]
+100.png [171 s/ 667 s]
+101.png [166 s/ 834 s]
+102.png [163 s/ 997 s]
+103.png [163 s/ 1160 s]
+104.png [162 s/ 1323 s]
+105.png [163 s/ 1487 s]
+106.png [163 s/ 1650 s]
+107.png [163 s/ 1813 s]
+108.png [163 s/ 1976 s]
+109.png [163 s/ 2140 s]
+110.png [163 s/ 2304 s]
+111.png [163 s/ 2467 s]
+112.png [163 s/ 2630 s]
+113.png [163 s/ 2794 s]
+114.png [163 s/ 2958 s]
+115.png [163 s/ 3121 s]
+116.png [163 s/ 3284 s]
+117.png [163 s/ 3447 s]
+118.png [164 s/ 3612 s]
+119.png [163 s/ 3775 s]
+120.png [162 s/ 3938 s]
+121.png [162 s/ 4101 s]
+122.png [162 s/ 4264 s]
+123.png [165 s/ 4429 s]
+124.png [162 s/ 4592 s]
+125.png [162 s/ 4755 s]
+126.png [162 s/ 4917 s]
+127.png [162 s/ 5080 s]
+128.png [163 s/ 5243 s]
+129.png [162 s/ 5406 s]
+130.png [162 s/ 5569 s]
+131.png [162 s/ 5732 s]
+132.png [162 s/ 5894 s]
+133.png [163 s/ 6057 s]
+134.png [163 s/ 6221 s]
+135.png [163 s/ 6384 s]
+136.png [163 s/ 6547 s]
+137.png [163 s/ 6711 s]
+138.png [163 s/ 6874 s]
+139.png [162 s/ 7037 s]
+140.png [163 s/ 7200 s]
+141.png [162 s/ 7363 s]
+142.png [163 s/ 7526 s]
+143.png [163 s/ 7690 s]
+144.png [163 s/ 7854 s]
+145.png [165 s/ 8019 s]
+146.png [164 s/ 8183 s]
+147.png [163 s/ 8347 s]
+148.png [163 s/ 8510 s]
+149.png [164 s/ 8674 s]
+End
