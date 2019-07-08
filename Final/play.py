@@ -39,9 +39,10 @@ class Play:
 		self.original_pos = "_recomposto" 
 		self.waifu_pos    = "_waifu"
 		self.dcscn_pos	  = "_DCSCN"
+		self.polygons_pos	  = "_nosso_algoritmo"
+		self.bluray_pos	  = "_bluray"
 		self.video_type = "original"
-		self.video_resize_type = 'nearest'
-		self.fps = 30
+		self.video_resize_type = 'sem'
 		self.video_i = 0
 		self.pause = False
 		self.is_fullscreen = True
@@ -63,6 +64,14 @@ class Play:
 			path = os.path.join(video_name,video_name+self.dcscn_pos+".mp4")
 			video['dcscn'] = Video(path)
 
+			#nosso algoritmo
+			path = os.path.join(video_name,video_name+self.polygons_pos+".mp4")
+			video['polygons'] = Video(path)
+
+			#bluray
+			path = os.path.join(video_name,video_name+self.bluray_pos+".mp4")
+			video['bluray'] = Video(path)
+
 			self.videos.append(video)
 
 	def __del__(self):
@@ -82,7 +91,7 @@ class Play:
 			frame = np.zeros((10,10,3))
 		
 		#resize
-		dim_frame  = (frame.shape[1]*4,frame.shape[0]*4)
+		dim_frame  = (frame.shape[1],frame.shape[0])
 		dim_screen = cv2.getWindowImageRect('video')[2:]
 
 		alpha = min([dim_screen[0]/dim_frame[0],dim_screen[1]/dim_frame[1]])
@@ -92,6 +101,13 @@ class Play:
 			frame = cv2.resize(frame, dim_frame2, interpolation = cv2.INTER_CUBIC )
 		elif self.video_resize_type == 'nearest':
 			frame = cv2.resize(frame, dim_frame2, interpolation = cv2.INTER_NEAREST )
+
+		#fit on screen
+		#screen = np.zeros([dim_screen[1],dim_screen[0],3])
+		#screen[:dim_frame2[1],:dim_frame2[0],0] = frame[:,:,0]
+		#screen[:dim_frame2[1],:dim_frame2[0],1] = frame[:,:,1]
+		#screen[:dim_frame2[1],:dim_frame2[0],2] = frame[:,:,2]
+		#print(self.videos_path[self.video_i],frame.shape)
 
 		return frame
 
@@ -110,10 +126,62 @@ class Play:
 		for key_type in video:
 			video[key_type].update()
 
-	
+	#add text to a frame
+	def add_text(self,frame):
+		try:
+			text =  self.videos_path[self.video_i] + '\n' +\
+					self.video_type.capitalize() + '\n' #+\
+					#self.video_resize_type.capitalize()
+		except:
+			print("Error: video [%d] not found!"%(self.video_i))
+			text = ''
+		
+
+		size = frame.shape
+		font                   = cv2.FONT_HERSHEY_COMPLEX
+		bottomLeftCornerOfText = [int(size[1]*0.78),int(size[0]*0.05)]
+		new_line               = int(size[0]*0.05)
+		fontScale              = (size[0]/600)
+		lineType               = int(size[0]/650+1)
+		delta_black            = int(size[0]/200)
+
+		#write lines
+		k_line = 1
+		for line in text.split('\n'):
+			
+			#black border
+			cv2.putText(frame,line, 
+				tuple(bottomLeftCornerOfText),
+				font, 
+				fontScale,
+				(0,0,0),
+				lineType+delta_black)
+
+			#white text
+			cv2.putText(frame,line, 
+				tuple(bottomLeftCornerOfText),
+				font, 
+				fontScale,
+				(255,255,255),
+				lineType)
+
+			k_line+=1
+			if k_line == 3:
+				fontScale *= 0.7
+				bottomLeftCornerOfText[1] += int(new_line*0.7)
+			else:
+				bottomLeftCornerOfText[1] += new_line
+
+		return frame 
+
 	#my better waitKey
 	def wait_key(self):
-		delta1 = 33#1000/self.fps
+		delta1 = 33#1000/30
+		try:
+			if self.videos_path[self.video_i] == "Avatar":
+				delta1 = 42
+		except:
+			None
 
 		#How much time has passed
 		now = time.time()
@@ -146,6 +214,9 @@ class Play:
 			if not self.pause:
 				self.update_frames()
 
+			frame = self.get_frame()
+			frame = self.add_text(frame)
+
 			#wait
 			key = self.wait_key()
 
@@ -155,7 +226,7 @@ class Play:
 				break
 
 			#draw
-			cv2.imshow('video',self.get_frame())
+			cv2.imshow('video',frame)
 
 			### Keyboard
 			#pause
@@ -168,14 +239,28 @@ class Play:
 				self.video_type = 'original'
 			elif key == ord('d'):
 				self.video_type = 'dcscn'
+			elif key == ord('p'):
+				self.video_type = 'polygons'
+			elif key == ord('r'):
+				self.video_type = 'bluray'
 			#change resize type 
 			elif key == ord('b'):
 				self.video_resize_type = 'bicubic'
 			elif key == ord('n'):
 				self.video_resize_type = 'nearest'
+			elif key == ord('m'):
+				self.video_resize_type = 'sem'
+			#reload
+			elif key == 13: #enter
+				if self.is_fullscreen: 
+					cv2.setWindowProperty("video",cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_NORMAL)
+					cv2.setWindowProperty("video",cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
 			#change video
-			elif ord('0')<=key and key<=ord('9'):
-				self.video_i = int(chr(key))
+			elif ord('1')<=key and key<=ord('9'):
+				self.video_i = int(chr(key))-1
+				if self.is_fullscreen: 
+					cv2.setWindowProperty("video",cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_NORMAL)
+					cv2.setWindowProperty("video",cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
 			#fullscreen
 			elif key == 200 or (key==27 and self.is_fullscreen): 
 				if self.is_fullscreen: 
@@ -190,6 +275,7 @@ play = Play()
 play.run()	
 
 print("end")
+
 
 
 
