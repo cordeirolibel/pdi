@@ -3,6 +3,7 @@ import cv2
 import os
 import numpy as np
 import time
+ZOOM = 4
 
 class Video:
 	def __init__(self,path):
@@ -15,14 +16,15 @@ class Video:
 
 
 	def update(self):
+		if "Flintstones_img" in self.path and self.frame is not None:
+			return self.frame
+			
 		ret, frame = self.cap.read()
 
 		#se o video acabou
 		if not ret:
 			#carrega novamente
-			#self.cap.release()
-			#self.cap = cv2.VideoCapture(self.path)
-			self.cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+			self.cap.set(cv2.CAP_PROP_POS_FRAMES,0)
 			ret, frame = self.cap.read()
 
 		self.frame = frame
@@ -35,7 +37,7 @@ class Video:
 class Play:
 
 	def __init__(self):
-		self.videos_path  = ["Flintstones","Spaghetti","Avatar"]
+		self.videos_path  = ["Flintstones","Spaghetti","Avatar","Flintstones_img"]
 		self.original_pos = "_recomposto" 
 		self.waifu_pos    = "_waifu"
 		self.dcscn_pos	  = "_DCSCN"
@@ -45,12 +47,15 @@ class Play:
 		self.video_resize_type = 'sem'
 		self.video_i = 0
 		self.pause = False
+		self.zoom  = False
 		self.is_fullscreen = True
 		self.last_time = time.time()
+		self.last_dim_screen = (0,0)
 		self.videos = list()
 
 		#load all videos 
 		for video_name in self.videos_path:
+
 			video = dict()
 			#original
 			path = os.path.join(video_name,video_name+self.original_pos+".mp4")
@@ -89,25 +94,31 @@ class Play:
 		#empty frame
 		if frame is None:
 			frame = np.zeros((10,10,3))
+		#zoom
+		elif self.zoom:
+			size   = frame.shape
+			pixels = (int(size[0]*(1-1/ZOOM)/2),int(size[1]*(1-1/ZOOM)/2))
+			frame  = frame[pixels[0]:-pixels[0],pixels[1]:-pixels[1]]
+
+		frame = frame.copy()
 		
+
 		#resize
 		dim_frame  = (frame.shape[1],frame.shape[0])
 		dim_screen = cv2.getWindowImageRect('video')[2:]
+		#if dont change so much
+		if abs(self.last_dim_screen[0] - dim_screen[0]) + abs(self.last_dim_screen[0] - dim_screen[0]) <= 2:
+			dim_screen = self.last_dim_screen
+		self.last_dim_screen = dim_screen
 
 		alpha = min([dim_screen[0]/dim_frame[0],dim_screen[1]/dim_frame[1]])
 		dim_frame2 = (int(dim_frame[0]*alpha),int(dim_frame[1]*alpha))
+
 
 		if self.video_resize_type == 'bicubic':
 			frame = cv2.resize(frame, dim_frame2, interpolation = cv2.INTER_CUBIC )
 		elif self.video_resize_type == 'nearest':
 			frame = cv2.resize(frame, dim_frame2, interpolation = cv2.INTER_NEAREST )
-
-		#fit on screen
-		#screen = np.zeros([dim_screen[1],dim_screen[0],3])
-		#screen[:dim_frame2[1],:dim_frame2[0],0] = frame[:,:,0]
-		#screen[:dim_frame2[1],:dim_frame2[0],1] = frame[:,:,1]
-		#screen[:dim_frame2[1],:dim_frame2[0],2] = frame[:,:,2]
-		#print(self.videos_path[self.video_i],frame.shape)
 
 		return frame
 
@@ -136,7 +147,7 @@ class Play:
 			print("Error: video [%d] not found!"%(self.video_i))
 			text = ''
 		
-
+		frame = frame.copy()
 		size = frame.shape
 		font                   = cv2.FONT_HERSHEY_COMPLEX
 		bottomLeftCornerOfText = [int(size[1]*0.78),int(size[0]*0.05)]
@@ -201,6 +212,14 @@ class Play:
 
 		return key
 
+	def change_frame(self,frame):
+		try:
+			dif = np.array_equal(self.frame_ant,frame)
+		except:
+			dif = False
+
+		self.frame_ant = frame
+		return dif
 
 	#loop playing
 	def run(self):
@@ -227,6 +246,7 @@ class Play:
 
 			#draw
 			cv2.imshow('video',frame)
+			
 
 			### Keyboard
 			#pause
@@ -250,6 +270,9 @@ class Play:
 				self.video_resize_type = 'nearest'
 			elif key == ord('m'):
 				self.video_resize_type = 'sem'
+			#zoom
+			elif key == ord('z'):
+				self.zoom = not self.zoom
 			#reload
 			elif key == 13: #enter
 				if self.is_fullscreen: 
