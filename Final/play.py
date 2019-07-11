@@ -10,6 +10,7 @@ class Video:
 		self.path = path
 		self.cap = cv2.VideoCapture(path)
 		self.frame = None
+		self.frame_n = 0
 
 	def __del__(self):
 		self.cap.release()
@@ -20,13 +21,15 @@ class Video:
 			return self.frame
 			
 		ret, frame = self.cap.read()
-
+		
 		#se o video acabou
 		if not ret:
 			#carrega novamente
 			self.cap.set(cv2.CAP_PROP_POS_FRAMES,0)
 			ret, frame = self.cap.read()
+			self.frame_n = 0
 
+		self.frame_n += 1
 		self.frame = frame
 
 	def last_frame(self):
@@ -94,18 +97,25 @@ class Play:
 		#empty frame
 		if frame is None:
 			frame = np.zeros((10,10,3))
+		elif self.videos_path[self.video_i] == "Avatar" and\
+			self.video_type == "bluray":
+			#16:9 to 4:3
+			#  |--dx--|--------new_x---------|--dx--|
+			size = frame.shape
+			new_x = size[0]*4/3
+			dx = int((size[1]-new_x)/2)
+			frame = frame[:,dx:-dx]
 		#zoom
 		elif self.zoom:
-			size   = frame.shape
 			pixels = (int(size[0]*(1-1/ZOOM)/2),int(size[1]*(1-1/ZOOM)/2))
 			frame  = frame[pixels[0]:-pixels[0],pixels[1]:-pixels[1]]
 
 		frame = frame.copy()
 		
-
 		#resize
 		dim_frame  = (frame.shape[1],frame.shape[0])
 		dim_screen = cv2.getWindowImageRect('video')[2:]
+
 		#if dont change so much
 		if abs(self.last_dim_screen[0] - dim_screen[0]) + abs(self.last_dim_screen[0] - dim_screen[0]) <= 2:
 			dim_screen = self.last_dim_screen
@@ -136,6 +146,10 @@ class Play:
 
 		for key_type in video:
 			video[key_type].update()
+			if self.videos_path[self.video_i] == "Avatar" and \
+			   video[key_type].frame_n%24 == 0 and \
+			   key_type == "bluray" :
+				video[key_type].update() #ignore frame 25
 
 	#add text to a frame
 	def add_text(self,frame):
