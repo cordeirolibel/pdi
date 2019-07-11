@@ -91,7 +91,7 @@ class Play:
 		try:
 			frame = self.videos[self.video_i][self.video_type].last_frame()
 		except:
-			print("Error: video [%d %s] not found!"%(self.video_i,self.video_type))
+			print("Error: video [%d %s] not found!"%(self.video_i+1,self.video_type))
 			frame = None
 
 		#empty frame
@@ -106,7 +106,8 @@ class Play:
 			dx = int((size[1]-new_x)/2)
 			frame = frame[:,dx:-dx]
 		#zoom
-		elif self.zoom:
+		if self.zoom:
+			size = frame.shape
 			pixels = (int(size[0]*(1-1/ZOOM)/2),int(size[1]*(1-1/ZOOM)/2))
 			frame  = frame[pixels[0]:-pixels[0],pixels[1]:-pixels[1]]
 
@@ -137,7 +138,7 @@ class Play:
 		try:
 			video = self.videos[self.video_i]
 		except:
-			print("Error: video [%d] not found!"%(self.video_i))
+			print("Error: video [%d] not found!"%(self.video_i+1))
 			video = None
 
 		#empty video
@@ -158,7 +159,7 @@ class Play:
 					self.video_type.capitalize() + '\n' #+\
 					#self.video_resize_type.capitalize()
 		except:
-			print("Error: video [%d] not found!"%(self.video_i))
+			print("Error: video [%d] not found!"%(self.video_i+1))
 			text = ''
 		
 		frame = frame.copy()
