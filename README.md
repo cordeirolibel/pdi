@@ -18,4 +18,13 @@ w/ [Kaminski](https://github.com/lucaskfreitas)
   
   ***
   # Projeto Final
-Utilizar diferentes tecnicas de Super-resolução em Cartoons.
+Utilizar diferentes técnicas de Super-resolução em Cartoons.
+
+<p align="center">
+     <img src="Final/imgs/App/0_4x_bilinear.png" width="450"><br>
+     Imagem Original (4x Bilinear Interpolation)
+</p>
+
+
+
+
