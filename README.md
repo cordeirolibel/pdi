@@ -47,8 +47,8 @@ Input |  Output
    
   # T03: Efeito bloom
   
-  Input  |  Output Mask
+  Input  |  Output 
 :-------------------------:|:-------------------------:
 <img src="T03/WindWakerGC.png" > |  <img src="T03/saida.png" >
   
-  
+***
