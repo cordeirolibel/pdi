@@ -20,11 +20,13 @@ w/ [Kaminski](https://github.com/lucaskfreitas)
   # Projeto Final
 Utilizar diferentes técnicas de Super-resolução em Cartoons.
 
-<p align="center">
-     <img src="Final/imgs/App/0_4x_bilinear.png" width="450"><br>
-     Imagem Original (4x Bilinear Interpolation)
-</p>
+__Original Image (4x Bilinear Interpolation)__  |  __Vectorization__
+:-------------------------:|:-------------------------:
+<img src="Final/imgs/App/0_4x_bilinear.png" width="450"> |  <img src="Final/imgs/App/6_inpaint.png" width="450">
+__[DCSCN](https://github.com/jiny2001/dcscn-super-resolution)__  |  __[waifu2x](https://github.com/nagadomi/waifu2x)__
+<img src="Final/imgs/App/7_dcscn.jpg" width="450"> |  <img src="Final/imgs/App/8_waifu.png" width="450">
 
-
+  ***
+  # T05: Chroma key
 
 
